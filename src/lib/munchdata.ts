@@ -51,7 +51,7 @@ export function munchData(filename: string) {
   const byAgent: ByAgent = {};
   const byAgentTeam: ByAgentTeam = {};
 
-  data.default.forEach(draft => {
+  data.forEach(draft => {
     console.log(`draft ${draft._id}`);
     const teamA = draft.draft_data.team_a;
     const teamB = draft.draft_data.team_b;
@@ -67,9 +67,12 @@ export function munchData(filename: string) {
           };
         }
 
+        // @ts-ignore
         if (byAgentTeam[state.agent][state.action.toLowerCase()][team] === undefined) {
+          // @ts-ignore
           byAgentTeam[state.agent][state.action.toLowerCase()][team] = 0;
         }
+        // @ts-ignore
         byAgentTeam[state.agent][state.action.toLowerCase()][team]++;
 
         if (!byTeam[team]) {
@@ -89,7 +92,9 @@ export function munchData(filename: string) {
         if (byAgent[state.agent] === undefined) {
           // console.log(`init 1 ${state.agent}`)
           byAgent[state.agent] = {
+            // @ts-ignore
             pick: {},
+            // @ts-ignore
             ban: {},
           }
         }
@@ -97,13 +102,17 @@ export function munchData(filename: string) {
         if (number === undefined) {
           console.log('fuck');
         }
+        // @ts-ignore
         if (byAgent[state.agent][state.action.toLowerCase()][number] === undefined) {
           // console.log(`init 2 ${state.agent} ${state.action.toLowerCase()} ${number}`);
+          // @ts-ignore
           byAgent[state.agent][state.action.toLowerCase()][number] = 0;
         }
         if (state.agent === 'Sage') {
+          // @ts-ignore
           console.log(state.agent, state.action.toLowerCase(), number, byAgent[state.agent][state.action.toLowerCase()][number])
         }
+        // @ts-ignore
         byAgent[state.agent][state.action.toLowerCase()][number]++;
       });
     });
@@ -118,6 +127,7 @@ export function munchData(filename: string) {
       if (!idk[a]) {
         idk[a] = [];
       }
+      // @ts-ignore
       idk[a].push(team);
     }
     const idk2 = [];
@@ -126,9 +136,12 @@ export function munchData(filename: string) {
       if (!idk2[a]) {
         idk2[a] = [];
       }
+      // @ts-ignore
       idk2[a].push(team);
     }
+    // @ts-ignore
     byAgentTeam[agent].pick = idk;
+    // @ts-ignore
     byAgentTeam[agent].ban = idk2;
   }
 

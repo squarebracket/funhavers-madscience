@@ -88,13 +88,6 @@ export const MyChart = (props: any) => {
         dataLabels: {
           hideOverflowingLabels: true,
           total: {
-            formatter: (val, opts) => {
-              if (val < 0) {
-                return `${val} bans`;
-              } else {
-                return `${val} picks`;
-              }
-            },
             enabled: false,
             offsetX: 5,
           }
@@ -103,6 +96,7 @@ export const MyChart = (props: any) => {
     },
     dataLabels: {
       formatter: (val, opts) => {
+        // @ts-ignore
         const abs = Math.abs(parseInt(val));
         return abs > 3 ? abs : '';
       },

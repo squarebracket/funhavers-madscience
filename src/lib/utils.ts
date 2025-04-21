@@ -1,4 +1,4 @@
-export function ordinal(num: number): string {
+export function ordinal(num: number | string): string {
   if (num.toString().at(-1) === '1') {
     return `${num}st`;
   } else if (num.toString().at(-1) === '2') {
