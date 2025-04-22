@@ -13,7 +13,7 @@ export default function TeamPick(props: Props) {
   const sortedA = Object.keys(data.byAgentTeam).sort((a, b) => {
     return data.byAgentTeam[b][type].length - data.byAgentTeam[a][type].length;
   });
-  const title = `Most ${titleCase(type)} By Teams`;
+  const title = `Agent ${titleCase(type)}s By Team`;
   return (
     <Box title={title}>
       {sortedA.slice(0, amount).map((agent, idx) => {
