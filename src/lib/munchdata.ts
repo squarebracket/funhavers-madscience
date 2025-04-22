@@ -1,4 +1,4 @@
-import * as data from '../../mad-science-draft-2.vetos.json';
+import data from '../../mad-science-draft-2.vetos.json';
 import { Agent, agents } from './agents';
 
 type DraftState = {
@@ -52,7 +52,6 @@ export function munchData(filename: string) {
   const byAgentTeam: ByAgentTeam = {};
 
   data.forEach(draft => {
-    console.log(`draft ${draft._id}`);
     const teamA = draft.draft_data.team_a;
     const teamB = draft.draft_data.team_b;
     draft.draft_data.state.forEach(states => {
@@ -90,7 +89,6 @@ export function munchData(filename: string) {
         byTeam[team][state.action.toLowerCase()][state.agent]++;
 
         if (byAgent[state.agent] === undefined) {
-          // console.log(`init 1 ${state.agent}`)
           byAgent[state.agent] = {
             // @ts-ignore
             pick: {},
@@ -104,13 +102,8 @@ export function munchData(filename: string) {
         }
         // @ts-ignore
         if (byAgent[state.agent][state.action.toLowerCase()][number] === undefined) {
-          // console.log(`init 2 ${state.agent} ${state.action.toLowerCase()} ${number}`);
           // @ts-ignore
           byAgent[state.agent][state.action.toLowerCase()][number] = 0;
-        }
-        if (state.agent === 'Sage') {
-          // @ts-ignore
-          console.log(state.agent, state.action.toLowerCase(), number, byAgent[state.agent][state.action.toLowerCase()][number])
         }
         // @ts-ignore
         byAgent[state.agent][state.action.toLowerCase()][number]++;

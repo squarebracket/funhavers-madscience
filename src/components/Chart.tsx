@@ -1,5 +1,7 @@
 'use client';
-import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic'
+
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import { useState } from 'react';
 import { ordinal } from '@/lib/utils';
 import Box from './Box';
@@ -175,8 +177,9 @@ export const MyChart = (props: any) => {
       <div>
         <div id="chart">
           <div className='text-center'><button className='bg-cyan-600 rounded hover:bg-cyan-400 p-1' onClick={() => setShowLabels(!showLabels)}>Toggle Data Labels</button></div>
+          {(typeof window !== 'undefined') &&
           <ReactApexChart options={options} series={series} type="bar" height={600} width="100%" />
-          
+          }
         </div>
         <div id="html-dist"></div>
       </div>
