@@ -1,5 +1,6 @@
 import { titleCase } from "@/lib/utils";
 import TeamPickData from "./TeamPickData";
+import Box from '@/components/Box';
 
 type Props = {
   type: 'pick' | 'ban',
@@ -12,15 +13,14 @@ export default function TeamPick(props: Props) {
   const sortedA = Object.keys(data.byAgentTeam).sort((a, b) => {
     return data.byAgentTeam[b][type].length - data.byAgentTeam[a][type].length;
   });
-
+  const title = `Most ${titleCase(type)} By Teams`;
   return (
-    <div>
-      <h2 className='text-center py-3'>Most {titleCase(type)}s by Teams</h2>
+    <Box title={title}>
       {sortedA.slice(0, amount).map((agent, idx) => {
         return (
           <TeamPickData key={idx} rank={idx + 1} agent={agent} teams={data.byAgentTeam[agent][type][data.byAgentTeam[agent][type].length - 1].join(', ')} times={data.byAgentTeam[agent][type].length - 1}></TeamPickData>
         )
       })}
-    </div>
+    </Box>
   )
 }

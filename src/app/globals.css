@@ -22,9 +22,8 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .title {
-  @apply text-2xl text-cyan-400 text-center;
+  @apply text-2xl text-cyan-400 text-center mb-4;
 }

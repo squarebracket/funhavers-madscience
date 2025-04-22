@@ -47,7 +47,6 @@ const initialData: { [key in Agent]: 0 } = {};
 agents.forEach((agent) => { initialData[agent] = 0 });
 
 export function munchData(filename: string) {
-  const byTeam: ByTeam = {}
   const byAgent: ByAgent = {};
   const byAgentTeam: ByAgentTeam = {};
 
@@ -74,20 +73,6 @@ export function munchData(filename: string) {
         // @ts-ignore
         byAgentTeam[state.agent][state.action.toLowerCase()][team]++;
 
-        if (!byTeam[team]) {
-          byTeam[team] = {
-            pick: {},
-            ban: {},
-          }
-        }
-        // @ts-ignore
-        if (byTeam[team][state.action.toLowerCase()][state.agent] === undefined) {
-          // @ts-ignore
-          byTeam[team][state.action.toLowerCase()][state.agent] = 0;
-        }
-        // @ts-ignore
-        byTeam[team][state.action.toLowerCase()][state.agent]++;
-
         if (byAgent[state.agent] === undefined) {
           byAgent[state.agent] = {
             // @ts-ignore
@@ -98,7 +83,6 @@ export function munchData(filename: string) {
         }
         const number = phaseMapper[state.phase];
         if (number === undefined) {
-          console.log('fuck');
         }
         // @ts-ignore
         if (byAgent[state.agent][state.action.toLowerCase()][number] === undefined) {
@@ -140,7 +124,6 @@ export function munchData(filename: string) {
 
   return {
     byAgent,
-    byTeam,
     byAgentTeam,
   };
 }
